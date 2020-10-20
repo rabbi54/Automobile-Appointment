@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+{% extends 'website/index.html' %}
+
+{% block content %}
+
+<hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h3>Service 1</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h3>Service 2</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h3>Service 3</h3>
+            </div>
+        </div>
+    </div>
+<hr>
+
+<div class="row centered">
+    <div class="col-md-4 centered">
+         <div class="card card-body">
+                <h3>Service 4</h3>
+            </div>
+    </div>
+
+     <div class="col-md-4 centered">
+         <div class="card card-body">
+                <h3>Service 5</h3>
+            </div>
+    </div>
+</div>
+<hr>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+            <form action="" method="POST" class="form">
+                {% csrf_token %}
+                <div class="row">
+                <div class="col-md-3">
+                        <h3 class="text-info">Search For Appointment</h3>
+                        <input type="date" class="form-control" name="date" id="findDate">
+                </div>
+                </div>
+                <br>
+                <button class="btn btn-primary" type="submit", name="find-appointment">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="card card-body">
+    {% if searched_date %}
+        <h3>{{searched_date}}</h3>
+    {% endif %}
+    {% if find_appointment_error %}
+        <h3 class="text-danger">{{find_appointment_error}}</h3>
+    {% endif %}
+            <table class="table table-sm">
+                <tr>
+                    <th>Available Time</th>
+                </tr>
+                {% if timeslots %}
+                    {% for x in timeslots %}
+                        <tr>
+                            <td>{{x}}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+
+<hr>
+{% if appointment_error %}
+<h3 class="text-danger">{{appointment_error}}</h3>
+{% endif %}
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+            <h3 class="text-info">Make your appointment</h3>
+            <form action="" method="post" >
+
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form.as_p}}
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit", name="set-appointment">Submit</button>
+            </form>
+         </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

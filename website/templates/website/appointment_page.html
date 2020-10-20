@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment</title>
+</head>
+<body>
+{% extends 'website/index.html' %}
+
+{% block content %}
+
+                {% if appointment %}
+                 <h3 class="text-center text-info">You have an appointment set</h3>
+                    <p class="text-center">Date : {{appointment.date}}</p>
+                    <p class="text-center">Time : {{appointment.get_timeslot_display}}</p>
+                    <p class="text-center">Servie Type : {{appointment.servicetype}}</p>
+                {% else %}
+                    <p>You don't have any appointment set</p>
+                {% endif %}
+
+{% endblock %}
+</body>
+</html>
