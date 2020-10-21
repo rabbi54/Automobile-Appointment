@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Appointment)
 admin.site.register(TimeSlot)
+admin.site.register(DateFulfilled)

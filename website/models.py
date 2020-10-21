@@ -48,4 +48,12 @@ class Appointment(models.Model):
     servicetype = models.CharField(max_length=20, choices=SERVICES)
 
     def __str__(self):
-        return self.date.__str__() + "  " + self.servicetype
+        return self.date.__str__() + "  " + self.servicetype + self.timeslot
+
+
+class DateFulfilled(models.Model):
+    date = models.DateField(blank=False)
+    isFull = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.date.__str__() + " " + str(self.isFull)
