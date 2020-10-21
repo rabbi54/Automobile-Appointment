@@ -12,7 +12,7 @@ def check_appoinment_form_date(date, timeslot):
     date_time = date.strftime("%Y-%m-%d")
     selected_date = datetime.datetime.strptime(date_time, '%Y-%m-%d')
     week_day = date.weekday()
-    today = datetime.datetime.today()
+    today = datetime.datetime.today() - datetime.timedelta(days=1)
     is_slot_booked = Appointment.objects.filter(date=date, timeslot=timeslot).exists()
 
     if selected_date < today:
@@ -174,7 +174,7 @@ def recommendation_page(request):
                     return render(request, 'website/recommendation.html', context)
                 else:
                     selected_date = datetime.datetime.strptime(date, '%Y-%m-%d')
-                    latest_full_day = DateFulfilled.objects.order_by('date').first()
+                    latest_full_day = DateFulfilled.objects.order_by('-date').first()
                     latest_full_date = latest_full_day.date + datetime.timedelta(days=1)
                     booked_timeslot = Appointment.objects.filter(date=latest_full_date).values('timeslot')
                     total_timeslot = {}
