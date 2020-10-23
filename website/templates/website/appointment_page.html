@@ -9,14 +9,15 @@
 
 {% block content %}
 
-                {% if appointment %}
-                 <h3 class="text-center text-info">You have an appointment set</h3>
-                    <p class="text-center">Date : {{appointment.date}}</p>
-                    <p class="text-center">Time : {{appointment.get_timeslot_display}}</p>
-                    <p class="text-center">Servie Type : {{appointment.servicetype}}</p>
-                {% else %}
-                    <p>You don't have any appointment set</p>
-                {% endif %}
+{% if appointment %}
+<h2 class="text-center">Thank you for being with us.</h2>
+<h3 class="text-center text-info">You have an appointment set</h3>
+<p class="text-center">Date : {{appointment.date}}</p>
+<p class="text-center">Time : {{appointment.get_timeslot_display}}</p>
+<p class="text-center">Servie Type : {{appointment.get_servicetype_display}}</p>
+{% else %}
+<p>You don't have any appointment set</p>
+{% endif %}
 
 {% endblock %}
 </body>

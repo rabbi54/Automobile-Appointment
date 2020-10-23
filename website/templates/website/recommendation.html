@@ -9,18 +9,18 @@
 {% block content %}
 
 <div class="row">
-	<div class="col">
-		<div class="card card-body">
-            <form action="" method="POST" class="form">
+    <div class="col">
+        <div class="card card-body">
+            <form action="" class="form" method="POST">
                 {% csrf_token %}
                 <div class="row">
-                <div class="col-md-3">
+                    <div class="col-md-3">
                         <h3 class="text-info">Select Date For Appointment</h3>
-                        <input type="date" class="form-control" name="date" id="findDate">
-                </div>
+                        <input class="form-control" id="findDate" name="date" type="date">
+                    </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" type="submit", name="find-appointment">Search</button>
+                <button , class="btn btn-primary" name="find-appointment" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -29,27 +29,27 @@
 <hr>
 <div class="card card-body">
     {% if searched_date %}
-        <h3>{{searched_date}}</h3>
+    <h3>{{searched_date}}</h3>
     {% endif %}
     {% if find_appointment_error %}
-        <h3 class="text-danger">{{find_appointment_error}}</h3>
+    <h3 class="text-danger">{{find_appointment_error}}</h3>
     {% endif %}
 
     {% if searched_date_not_found %}
-        <p class="text-info">{{searched_date_not_found}}</p>
+    <p class="text-info">{{searched_date_not_found}}</p>
     {% endif %}
-            <table class="table table-sm">
-                <tr>
-                    <th>Available Time</th>
-                </tr>
-                {% if timeslots %}
-                    {% for x in timeslots %}
-                        <tr>
-                            <td>{{x}}</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </table>
+    <table class="table table-sm">
+        <tr>
+            <th>Available Time</th>
+        </tr>
+        {% if timeslots %}
+        {% for x in timeslots %}
+        <tr>
+            <td>{{x}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
 </div>
 
 {% endblock %}

@@ -26,7 +26,11 @@ class AppointmentForm(ModelForm):
             'servicetype': "",
         }
         widgets = {
-            'date': DateInput(attrs={'min': datetime.datetime.now().strftime("%d-%m-%Y")}),
+            'date': DateInput(attrs={'min': datetime.datetime.now().strftime("%d-%m-%Y"), 'class': 'form-control',
+                                     'placeholder': ''}),
+            'timeslot': Select(attrs={'class': 'form-control'}),
+            'servicetype': Select(attrs={'class': 'form-control'})
+
         }
 
     # def clean_timeslot(self):
@@ -36,7 +40,7 @@ class AppointmentForm(ModelForm):
     def __init__(self, choicelist, *args, **kwargs):
         super(AppointmentForm, self).__init__(*args, **kwargs)
         self.fields['timeslot'].queryset = choicelist
-        self.fields['date'].widget.attrs['style'] = 'width:400px; height:40px;'
+        self.fields['date'].widget.attrs['style'] = 'width:400px; height:40px; color: blue'
         self.fields['timeslot'].widget.attrs['style'] = 'width:400px; height:40px;'
         self.fields['servicetype'].widget.attrs['style'] = 'width:400px; height:40px;'
 
