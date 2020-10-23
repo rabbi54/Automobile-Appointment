@@ -12,6 +12,7 @@ def check_appoinment_form_date(date, timeslot):
     date_time = date.strftime("%Y-%m-%d")
     selected_date = datetime.datetime.strptime(date_time, '%Y-%m-%d')
     week_day = date.weekday()
+
     today = datetime.datetime.today() - datetime.timedelta(days=1)
     is_slot_booked = Appointment.objects.filter(date=date, timeslot=timeslot).exists()
 
